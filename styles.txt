@@ -1,0 +1,145 @@
+﻿/* styles.css */
+
+
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #e74c3c;
+    --accent-color: #2ecc71;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+
+.site-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+}
+
+
+nav ul li {
+    margin: 0 10px;
+}
+
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+
+nav ul li a:hover {
+    color: #fff;
+}
+
+
+.hero-section {
+    background-image: url('hero.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+
+.hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+
+.about-section {
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+
+.profile-picture {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin: 0 auto 1rem;
+}
+
+
+.contact-section form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+.contact-section input[type="text"],
+.contact-section input[type="email"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+}
+
+
+.contact-section textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+}
+
+
+.app-section {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 2rem;
+}
+
+
+.download-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+.download-button:hover {
+    background-color: darken(var(--accent-color), 10%);
+}
+
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
+
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 50vh;
+    }
+}
