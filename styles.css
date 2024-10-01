@@ -60,6 +60,27 @@ nav ul li a:hover {
     font-size: 3rem;
     margin-bottom: 1rem;
     text-shadow: 1px 1px 2px black;
+    color: rgba(255, 255, 255, 0.9); /* Добавляем немного прозрачности */
+}
+
+.hero-section p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.hero-section button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.hero-section button:hover {
+    background-color: darken(var(--primary-color), 10%);
 }
 
 .about-section {
