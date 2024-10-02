@@ -110,6 +110,11 @@ footer {
 }
 
 @media screen and (max-width: 768px) {
+   .hero-container {
+        height: auto;
+        padding-bottom: 20px;
+    }
+
     .card-carousel {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
