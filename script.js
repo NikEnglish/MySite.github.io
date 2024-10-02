@@ -19,22 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setActiveCard(newIndex);
     }
 
-    // На мобильных устройствах используем стрелки
-    const prevArrow = document.querySelector('.arrow:nth-child(1)');
-    const nextArrow = document.querySelector('.arrow:nth-child(2)');
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => setActiveCard(index));
+    });
 
-    // Обработчики кликов для стрелок
-    prevArrow.addEventListener('click', prevCard);
-    nextArrow.addEventListener('click', nextCard);
+    setInterval(nextCard, 5000);
 
-    // Автоматическое переключение на мобильных устройств
-    setInterval(() => {
-        if (window.innerWidth <= 768) {
-            nextCard();
-        }
-    }, 5000);
-
-    // Добавляем обработчик клавиатуры для мобильных устройств
     document.addEventListener('keydown', (event) => {
         switch(event.key) {
             case 'ArrowRight':
@@ -46,44 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // На десктопных устройствах используем наведение для переключения
-    cards.forEach((card, index) => {
-        card.addEventListener('mouseenter', () => setActiveCard(index));
-        card.addEventListener('mouseleave', () => setActiveCard(activeCardIndex));
-    });
+    // Добавляем кнопки навигации
+    const navButtonsContainer = document.createElement('div');
+    navButtonsContainer.style.position = 'absolute';
+    navButtonsContainer.style.bottom = '80px';
+    navButtonsContainer.style.left = '50%';
+    navButtonsContainer.style.transform = 'translateX(-50%)';
+    navButtonsContainer.style.display = 'flex';
+    navButtonsContainer.style.gap = '20px';
 
-    // Добавляем обработчик touchstart для перелистывания карусель
-    document.body.addEventListener('touchstart', (event) => {
-        event.preventDefault();
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous';
+    prevButton.onclick = prevCard;
 
-        const touch = event.touches[0];
-        const startX = touch.clientX;
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.onclick = nextCard;
 
-        document.body.addEventListener('touchmove', (e) => {
-            const moveX = e.touches[0].clientX;
-            const diffX = startX - moveX;
+    navButtonsContainer.appendChild(prevButton);
+    navButtonsContainer.appendChild(nextButton);
 
-            if (Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    nextCard();
-                } else {
-                    prevCard();
-                }
-
-                // Останавливаем движение
-                e.preventDefault();
-            }
-        });
-    });
-
-    // Добавляем обработчик mousemove для перелистывания карусель
-    document.body.addEventListener('mousemove', (event) => {
-        const mouseX = event.clientX;
-
-        if (mouseX < window.innerWidth / 2) {
-            prevCard();
-        } else if (mouseX > window.innerWidth / 2) {
-            nextCard();
-        }
-    });
+    document.body.appendChild(navButtonsContainer);
 });
