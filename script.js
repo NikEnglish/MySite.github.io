@@ -35,4 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
         }
     });
+
+    // Добавляем кнопки навигации
+    const navButtonsContainer = document.createElement('div');
+    navButtonsContainer.style.position = 'absolute';
+    navButtonsContainer.style.bottom = '80px';
+    navButtonsContainer.style.left = '50%';
+    navButtonsContainer.style.transform = 'translateX(-50%)';
+    navButtonsContainer.style.display = 'flex';
+    navButtonsContainer.style.gap = '20px';
+
+    const prevButton = document.createElement('button');
+    prevButton.textContent = 'Previous';
+    prevButton.onclick = prevCard;
+
+    const nextButton = document.createElement('button');
+    nextButton.textContent = 'Next';
+    nextButton.onclick = nextCard;
+
+    navButtonsContainer.appendChild(prevButton);
+    navButtonsContainer.appendChild(nextButton);
+
+    document.body.appendChild(navButtonsContainer);
 });
