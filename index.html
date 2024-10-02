@@ -1,88 +1,92 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Моя Веб-сайт</title>
+    <title>My Website</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на мой веб-сайт</h1>
+        <h1>Welcome to My Website</h1>
     </header>
 
     <nav>
         <ul>
-            <li><a href="#home">Главная</a></li>
-            <li><a href="#about">О нас</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#contact">Контакт</a></li>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
 
     <div class="hero-container">
         <div class="hero-text">
-            <h1>Добро пожаловать на мой веб-сайт</h1>
-            <p>Это пример веб-сайта, демонстрирующий различные функции.</p>
+            <h1>Welcome to My Website</h1>
+            <p>This is a sample website showcasing various features.</p>
         </div>
         <div class="card-carousel">
             <div class="card active">
-                <img src="images/slide1.jpg" alt="Слайд 1">
+                <img src="images/slide1.jpg" alt="Slide 1">
                 <div class="card-content">
-                    <h3>Заголовок карточки 1</h3>
-                    <p>Некоторая информация о карточке 1...</p>
+                    <h3>Card Title 1</h3>
+                    <p>Some description about card 1...</p>
                 </div>
             </div>
             <div class="card">
-                <img src="images/slide2.jpg" alt="Слайд 2">
+                <img src="images/slide2.jpg" alt="Slide 2">
                 <div class="card-content">
-                    <h3>Заголовок карточки 2</h3>
-                    <p>Некоторая информация о карточке 2...</p>
+                    <h3>Card Title 2</h3>
+                    <p>Some description about card 2...</p>
                 </div>
             </div>
             <div class="card">
-                <img src="images/slide3.jpg" alt="Слайд 3">
+                <img src="images/slide3.jpg" alt="Slide 3">
                 <div class="card-content">
-                    <h3>Заголовок карточки 3</h3>
-                    <p>Некоторая информация о карточке 3...</p>
+                    <h3>Card Title 3</h3>
+                    <p>Some description about card 3...</p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Добавляем кнопки стрелок в конец тела документа -->
+    <button class="arrow">></button>
+    <button class="arrow"><</button>
+
     <main>
         <section id="home">
-            <h2>Главная секция</h2>
-            <p>Добро пожаловать в главную секцию нашего сайта.</p>
+            <h2>Home Section</h2>
+            <p>Welcome to the home section of our website.</p>
         </section>
 
         <section id="about">
-            <h2>О нас</h2>
-            <p>Моя компания предоставляет инновационные решения для современных бизнесов.</p>
+            <h2>About Us</h2>
+            <p>My company provides innovative solutions for modern businesses.</p>
         </section>
 
         <section id="services">
-            <h2>Наши услуги</h2>
+            <h2>Our Services</h2>
             <ul>
-                <li>Разработка веб-сайтов</li>
-                <li>Дизайн мобильных приложений</li>
-                <li>Дigital Marketing</li>
+                <li>Web Development</li>
+                <li>Mobile App Design</li>
+                <li>Digital Marketing</li>
             </ul>
         </section>
 
         <section id="contact">
-            <h2>Контакты</h2>
+            <h2>Contact Us</h2>
             <form action="/submit" method="post">
-                <input type="text" name="name" placeholder="Ваше имя" required>
-                <input type="email" name="email" placeholder="Ваш email" required>
-                <textarea name="message" rows="4" cols="50" placeholder="Ваше сообщение" required></textarea>
-                <button type="submit">Отправить</button>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" rows="4" cols="50" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
             </form>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Мой веб-сайт. Все права защищены.</p>
+        <p>&copy; 2024 My Website. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
