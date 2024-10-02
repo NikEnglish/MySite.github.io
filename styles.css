@@ -1,110 +1,92 @@
-/* styles.css */
-
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #e74c3c;
-    --accent-color: #2ecc71;
-    --background-color: #f9f9f9;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
     margin: 0;
     padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.site-header {
-    background-color: var(--primary-color);
+/* Остальные стили CSS */
+
+header {
+    background-color: #3498db;
     color: white;
-    padding: 1rem;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
 }
 
 nav ul {
     list-style-type: none;
+    padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
 }
 
 nav ul li {
-    margin: 0 10px;
+    margin-right: 20px;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    color: #fff;
+main {
+    flex-grow: 1;
+    padding: 20px;
 }
 
-.hero-section {
-    background-size: cover;
-    background-position: center;
+footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.hero-container {
+    position: relative;
+    width: 100%;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    overflow: hidden;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
     color: #000000;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.7);
+    text-shadow: 2px 2px black;
+    opacity: 0.8;
+    pointer-events: none;
 }
 
-.hero-section h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    text-shadow: 1px 1px 2px black;
+.carousel-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    animation: slide 60s infinite linear;
 }
 
-.about-section {
-    padding: 2rem;
-    background-color: var(--background-color);
+.carousel-slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(5px);
 }
 
-.problems-section {
-    padding: 2rem;
-    background-color: #f4f4f4;
-}
-
-.contacts-section {
-    padding: 2rem;
-    background-color: #f9f9f9;
-}
-
-.app-section {
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 2rem;
-}
-
-.download-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: var(--accent-color);
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.download-button:hover {
-    background-color: darken(var(--accent-color), 10%);
-}
-
-.footer {
-    background-color: var(--primary-color);
-    color: white;
-    text-align: center;
-    padding: 1rem;
-}
-
-@media (max-width: 768px) {
-    .hero-section {
-        height: 50vh;
-    }
+@keyframes slide {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-33.33%); }
+    50% { transform: translateX(-66.67%); }
+    75% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
 }
