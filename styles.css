@@ -53,8 +53,7 @@ footer {
 .hero-container {
     position: relative;
     width: 100%;
-    height: 100vh;
-    overflow: hidden;
+    height: auto;
 }
 
 .hero-text {
@@ -71,18 +70,18 @@ footer {
 
 /* Карусель карт */
 .card-carousel {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
     display: flex;
-    gap: 20px;
+    gap: 16px;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
 }
 
 /* Каждая карточка */
 .card {
     width: 300px;
-    height: 400px;
+    height: auto;
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -97,7 +96,7 @@ footer {
 
 .card img {
     width: 100%;
-    height: 200px;
+    height: auto;
     object-fit: cover;
 }
 
@@ -109,14 +108,6 @@ footer {
 
 .card-content h3 {
     margin-top: 0;
-}
-
-/* Анимация при наведении */
-.card:hover,
-.card:focus {
-    transform: translateY(-4px) rotateY(30deg);
-    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-    transition: all 0.3s ease;
 }
 
 /* Стили для сообщений */
@@ -138,61 +129,26 @@ footer {
     color: #333;
 }
 
-/* Медиа-запросы для адаптивности */
-
-@media screen and (max-width: 768px) {
-   .hero-container {
-       height: auto;
-       padding-bottom: 20px;
-   }
-
-   .card-carousel {
-       display: grid;
-       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-       gap: 16px;
-   }
-
-   .card {
-       width: 100%;
-       height: auto;
-   }
-
-   .card img {
-       height: 150px;
-       object-fit: cover;
-   }
-
-   .card-content {
-       padding: 12px;
-   }
-
-   .card-content h3 {
-       font-size: 14px;
-   }
-
-   .card-content p {
-       font-size: 12px;
-   }
-
-   .card:hover,
-   .card:focus {
-       transform: translateY(-4px);
-       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-       transition: all 0.3s ease;
-   }
+/* Блок приветствия */
+.welcome-message {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 80%;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-@media screen and (min-width: 769px) {
-    .card:hover,
-    .card:focus {
-        transform: scale(1.05);
-        box-shadow: 0 6px 8px rgba(0,0,0,0.15);
-        transition: all 0.3s ease;
-    }
+.welcome-message h2 {
+    color: #3498db;
+    margin-bottom: 15px;
+}
 
-    .card-content p {
-        font-size: 14px;
-    }
+.welcome-message ul {
+    padding-left: 30px;
 }
 
 /* Стрелки навигации */
@@ -244,4 +200,77 @@ body *:nth-child(even) {
 
 body *:nth-child(odd) {
     animation-delay: 0.5s;
+}
+
+/* Медиа-запросы для адаптивности */
+@media screen and (max-width: 768px) {
+    .hero-container {
+        height: auto;
+        padding-bottom: 40px;
+    }
+
+    .welcome-message {
+        position: static;
+        max-width: 90%;
+        background-color: transparent;
+        box-shadow: none;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .card-carousel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card {
+        width: 100%;
+        height: auto;
+    }
+
+    .card img {
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .card-content {
+        padding: 12px;
+    }
+
+    .card-content h3 {
+        font-size: 18px;
+    }
+
+    .card-content p {
+        font-size: 14px;
+    }
+
+    /* Добавляем кнопки навигации между карточками */
+    .prev-button,
+    .next-button {
+        background-color: #3498db;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .prev-button {
+        margin-right: 10px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .card:hover,
+    .card:focus {
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+    }
+
+    .card-content p {
+        font-size: 14px;
+    }
 }
