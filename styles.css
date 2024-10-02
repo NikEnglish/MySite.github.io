@@ -73,8 +73,8 @@ footer {
 }
 
 .card {
-    width: 250px;
-    height: 350px;
+    width: 300px; /* Уменьшен размер карточки */
+    height: 400px;
     border-radius: 10px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -82,7 +82,7 @@ footer {
 }
 
 .card.active {
-    transform: scale(1.1);
+    transform: scale(1.05); /* Немного уменьшено увеличение активной карточки */
 }
 
 .card img {
@@ -102,18 +102,10 @@ footer {
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03); /* Немного уменьшено увеличение при наведении */
     cursor: pointer;
 }
 
-
-@keyframes slide {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-33.33%); }
-    50% { transform: translateX(-66.67%); }
-    75% { transform: translateX(-100%); }
-    100% { transform: translateX(0); }
-}
 
 /* Дополнительные стили для улучшения внешнего вида */
 h1, h2 {
