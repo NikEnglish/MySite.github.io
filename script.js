@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     prevArrow.addEventListener('click', prevCard);
     nextArrow.addEventListener('click', nextCard);
 
-    // Автоматическое переключение на мобильных устройствах
+    // Автоматическое переключение на мобильных устройств
     setInterval(() => {
         if (window.innerWidth <= 768) {
             nextCard();
@@ -46,14 +46,44 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Добавляем обработчик для навигации по карусели
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            const href = link.getAttribute('href');
-            const section = document.querySelector(href);
-            section.scrollIntoView({ behavior: 'smooth' });
+    // На десктопных устройствах используем наведение для переключения
+    cards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => setActiveCard(index));
+        card.addEventListener('mouseleave', () => setActiveCard(activeCardIndex));
+    });
+
+    // Добавляем обработчик touchstart для перелистывания карусель
+    document.body.addEventListener('touchstart', (event) => {
+        event.preventDefault();
+
+        const touch = event.touches[0];
+        const startX = touch.clientX;
+
+        document.body.addEventListener('touchmove', (e) => {
+            const moveX = e.touches[0].clientX;
+            const diffX = startX - moveX;
+
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextCard();
+                } else {
+                    prevCard();
+                }
+
+                // Останавливаем движение
+                e.preventDefault();
+            }
         });
+    });
+
+    // Добавляем обработчик mousemove для перелистывания карусель
+    document.body.addEventListener('mousemove', (event) => {
+        const mouseX = event.clientX;
+
+        if (mouseX < window.innerWidth / 2) {
+            prevCard();
+        } else if (mouseX > window.innerWidth / 2) {
+            nextCard();
+        }
     });
 });
