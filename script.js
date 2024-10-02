@@ -1,25 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const carouselWrapper = document.querySelector('.carousel-wrapper');
-    let currentSlide = 0;
+    const cards = document.querySelectorAll('.card');
+    let activeCardIndex = 0;
 
-    function nextSlide() {
-        currentSlide++;
-        if (currentSlide >= carouselWrapper.children.length) {
-            currentSlide = 0;
-        }
-        carouselWrapper.style.animation = 'none';
-        setTimeout(() => {
-            carouselWrapper.style.animation = 'slide 60s infinite linear';
-        }, 0);
+    function setActiveCard(index) {
+        cards.forEach((card, i) => {
+            card.classList.toggle('active', i === index);
+        });
+        activeCardIndex = index;
     }
 
-    setInterval(nextSlide, 60000);
+    function nextCard() {
+        const newIndex = (activeCardIndex + 1) % cards.length;
+        setActiveCard(newIndex);
+    }
 
-    // Добавляем небольшую задержку перед первым переходом
-    setTimeout(() => {
-        carouselWrapper.style.animation = 'none';
-        setTimeout(() => {
-            carouselWrapper.style.animation = 'slide 60s infinite linear';
-        }, 0);
-    }, 3000);
+    function prevCard() {
+        const newIndex = (activeCardIndex - 1 + cards.length) % cards.length;
+        setActiveCard(newIndex);
+    }
+
+    cards.forEach((card, index) => {
+        card.addEventListener('click', () => setActiveCard(index));
+    });
+
+    setInterval(nextCard, 5000);
+
+    document.addEventListener('keydown', (event) => {
+        switch(event.key) {
+            case 'ArrowRight':
+                nextCard();
+                break;
+            case 'ArrowLeft':
+                prevCard();
+                break;
+        }
+    });
 });
