@@ -19,12 +19,33 @@ document.addEventListener('DOMContentLoaded', () => {
         setActiveCard(newIndex);
     }
 
-    cards.forEach((card, index) => {
-        card.addEventListener('click', () => setActiveCard(index));
-    });
+    // На мобильных устройствах используем стрелки
+    const prevArrow = document.createElement('button');
+    prevArrow.textContent = '<';
+    prevArrow.classList.add('arrow');
 
-    setInterval(nextCard, 5000);
+    const nextArrow = document.createElement('button');
+    nextArrow.textContent = '>';
+    nextArrow.classList.add('arrow');
 
+    const arrowsContainer = document.createElement('div');
+    arrowsContainer.appendChild(prevArrow);
+    arrowsContainer.appendChild(nextArrow);
+
+    document.body.appendChild(arrowsContainer);
+
+    // Обработчики кликов для стрелок
+    prevArrow.addEventListener('click', prevCard);
+    nextArrow.addEventListener('click', nextCard);
+
+    // Автоматическое переключение на мобильных устройствах
+    setInterval(() => {
+        if (window.innerWidth <= 768) {
+            nextCard();
+        }
+    }, 5000);
+
+    // Добавляем обработчик клавиатуры для мобильных устройств
     document.addEventListener('keydown', (event) => {
         switch(event.key) {
             case 'ArrowRight':
@@ -36,25 +57,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Добавляем кнопки навигации
-    const navButtonsContainer = document.createElement('div');
-    navButtonsContainer.style.position = 'absolute';
-    navButtonsContainer.style.bottom = '80px';
-    navButtonsContainer.style.left = '50%';
-    navButtonsContainer.style.transform = 'translateX(-50%)';
-    navButtonsContainer.style.display = 'flex';
-    navButtonsContainer.style.gap = '20px';
-
-    const prevButton = document.createElement('button');
-    prevButton.textContent = 'Previous';
-    prevButton.onclick = prevCard;
-
-    const nextButton = document.createElement('button');
-    nextButton.textContent = 'Next';
-    nextButton.onclick = nextCard;
-
-    navButtonsContainer.appendChild(prevButton);
-    navButtonsContainer.appendChild(nextButton);
-
-    document.body.appendChild(navButtonsContainer);
+    // На десктопных устройствах используем наведение для переключения
+    cards.forEach((card, index) => {
+        card.addEventListener('mouseenter', () => setActiveCard(index));
+        card.addEventListener('mouseleave', () => setActiveCard(activeCardIndex));
+    });
 });
