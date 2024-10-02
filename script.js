@@ -1,31 +1,25 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    const navLinks = document.querySelectorAll('nav ul li a');
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    let currentSlide = 0;
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetSectionId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetSectionId);
-
-            // Smooth scrolling
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-        });
-    });
-
-    // Add smooth scrolling effect to all links with hashes
-    (function() {
-        'use strict';
-        var anchorLinks = document.querySelectorAll('a[href^="#"]');
-        for (var i = 0; i < anchorLinks.length; i++) {
-            anchorLinks[i].addEventListener('click', function(e) {
-                var targetID = this.getAttribute('href');
-                e.preventDefault();
-                document.getElementById(targetID).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+    function nextSlide() {
+        currentSlide++;
+        if (currentSlide >= carouselWrapper.children.length) {
+            currentSlide = 0;
         }
-    })();
+        carouselWrapper.style.animation = 'none';
+        setTimeout(() => {
+            carouselWrapper.style.animation = 'slide 60s infinite linear';
+        }, 0);
+    }
+
+    setInterval(nextSlide, 60000);
+
+    // Добавляем небольшую задержку перед первым переходом
+    setTimeout(() => {
+        carouselWrapper.style.animation = 'none';
+        setTimeout(() => {
+            carouselWrapper.style.animation = 'slide 60s infinite linear';
+        }, 0);
+    }, 3000);
 });
