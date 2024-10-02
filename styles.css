@@ -8,8 +8,6 @@ body {
     min-height: 100vh;
 }
 
-/* Остальные стили CSS */
-
 header {
     background-color: #3498db;
     color: white;
@@ -59,7 +57,7 @@ footer {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    color: #000000;
+    color: white;
     text-shadow: 2px 2px black;
     opacity: 0.8;
     pointer-events: none;
@@ -89,4 +87,47 @@ footer {
     50% { transform: translateX(-66.67%); }
     75% { transform: translateX(-100%); }
     100% { transform: translateX(0); }
+}
+
+/* Дополнительные стили для улучшения внешнего вида */
+h1, h2 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+button[type="submit"] {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #2980b9;
 }
