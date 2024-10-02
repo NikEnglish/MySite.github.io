@@ -178,3 +178,38 @@ footer {
 .arrow:hover {
     background-color: rgba(52, 152, 219, 0.1);
 }
+/* Анимация плавного появления */
+
+@keyframes fadeInAnimation {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fadeIn {
+  animation: fadeInAnimation 1s ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* Применяем анимацию ко всем элементам */
+
+body * {
+  animation: fadeInAnimation 1s ease-in-out;
+  animation-fill-mode: both;
+}
+
+/* Опционально: задержка для некоторых элементов */
+
+body *:nth-child(even) {
+  animation-delay: 0.25s;
+}
+
+body *:nth-child(odd) {
+  animation-delay: 0.5s;
+}
+
