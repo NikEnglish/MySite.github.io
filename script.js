@@ -20,14 +20,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // На мобильных устройствах используем стрелки
-    const prevArrow = document.querySelector('.arrow:nth-child(1)');
-    const nextArrow = document.querySelector('.arrow:nth-child(2)');
+    const prevArrow = document.createElement('button');
+    prevArrow.textContent = '<';
+    prevArrow.classList.add('arrow');
+
+    const nextArrow = document.createElement('button');
+    nextArrow.textContent = '>';
+    nextArrow.classList.add('arrow');
+
+    const arrowsContainer = document.createElement('div');
+    arrowsContainer.appendChild(prevArrow);
+    arrowsContainer.appendChild(nextArrow);
+
+    document.body.appendChild(arrowsContainer);
 
     // Обработчики кликов для стрелок
     prevArrow.addEventListener('click', prevCard);
     nextArrow.addEventListener('click', nextCard);
 
-    // Автоматическое переключение на мобильных устройств
+    // Автоматическое переключение на мобильных устройствах
     setInterval(() => {
         if (window.innerWidth <= 768) {
             nextCard();
@@ -50,40 +61,5 @@ document.addEventListener('DOMContentLoaded', () => {
     cards.forEach((card, index) => {
         card.addEventListener('mouseenter', () => setActiveCard(index));
         card.addEventListener('mouseleave', () => setActiveCard(activeCardIndex));
-    });
-
-    // Добавляем обработчик touchstart для перелистывания карусель
-    document.body.addEventListener('touchstart', (event) => {
-        event.preventDefault();
-
-        const touch = event.touches[0];
-        const startX = touch.clientX;
-
-        document.body.addEventListener('touchmove', (e) => {
-            const moveX = e.touches[0].clientX;
-            const diffX = startX - moveX;
-
-            if (Math.abs(diffX) > 50) {
-                if (diffX > 0) {
-                    nextCard();
-                } else {
-                    prevCard();
-                }
-
-                // Останавливаем движение
-                e.preventDefault();
-            }
-        });
-    });
-
-    // Добавляем обработчик mousemove для перелистывания карусель
-    document.body.addEventListener('mousemove', (event) => {
-        const mouseX = event.clientX;
-
-        if (mouseX < window.innerWidth / 2) {
-            prevCard();
-        } else if (mouseX > window.innerWidth / 2) {
-            nextCard();
-        }
     });
 });
