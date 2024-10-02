@@ -63,23 +63,49 @@ footer {
     pointer-events: none;
 }
 
-.carousel-wrapper {
+.card-carousel {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-wrap: nowrap;
-    animation: slide 60s infinite linear;
+    gap: 20px;
 }
 
-.carousel-slide {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: blur(5px);
+.card {
+    width: 250px;
+    height: 350px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
+.card.active {
+    transform: scale(1.1);
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+    background-color: rgba(255,255,255,0.8);
+    backdrop-filter: blur(5px);
+}
+
+.card-content h3 {
+    margin-top: 0;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
 
 @keyframes slide {
     0% { transform: translateX(0); }
