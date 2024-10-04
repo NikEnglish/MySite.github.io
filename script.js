@@ -22,51 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(scrollAnimation);
     }
 
-    // Функция для отправки email
-    function sendEmail(name, email, message) {
-        fetch('/send-email', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                name: name,
-                email: email,
-                message: message
-            }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Спасибо! Ваше сообщение было отправлено.');
-                document.getElementById('contactForm').reset();
-            } else {
-                alert('Произошла ошибка при отправке сообщения.');
-            }
-        })
-        .catch(error => {
-            console.error('Ошибка:', error);
-            alert('Произошла ошибка при отправке сообщения.');
-        });
+    // Функция для сохранения сообщения в файл
+    function saveMessage(name, email, message) {
+        const messageText = `${new Date().toLocaleString()} - Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\n`;
+        const file = document.createElement('a');
+        file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(messageText));
+        file.setAttribute('download', 'messages.txt');
+        file.click();
     }
-
-    // Добавляем событийный слушатель к форме
-    const contactForm = document.getElementById('contactForm');
-    
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Получаем значения из формы
-        const name = contactForm.querySelector('input[name="name"]').value;
-        const email = contactForm.querySelector('input[name="email"]').value;
-        const message = contactForm.querySelector('textarea[name="message"]').value;
-
-        // Вызываем функцию отправки email
-        sendEmail(name, email, message);
-
-        // Скролл вниз после отправки формы
-        smoothScroll(document.body.scrollHeight);
-    });
 
     // Функция для карусели карт
     function cardCarousel() {
@@ -114,4 +77,22 @@ document.addEventListener('DOMContentLoaded', function() {
             smoothScroll(getItNowButton.nextElementSibling);
         });
     }
+
+    // Обработка формы отправки сообщения
+    const contactForm = document.getElementById('contactForm');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Получаем значения из формы
+        const name = contactForm.querySelector('input[name="name"]').value;
+        const email = contactForm.querySelector('input[name="email"]').value;
+        const message = contactForm.querySelector('textarea[name="message"]').value;
+
+        // Сохраняем сообщение в файл
+        saveMessage(name, email, message);
+
+        alert('Спасибо! Ваше сообщение было сохранено.');
+        contactForm.reset();
+    });
 });
