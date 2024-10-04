@@ -115,6 +115,35 @@ footer {
     transition: all 0.3s ease;
 }
 
+/* Стили для разделов в main */
+#about {
+    background-color: #f1c40f; /* Желтый фон */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#services {
+    background-color: #e74c3c; /* Красный фон */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#home {
+    background-color: #00ff00; /* Зеленый фон */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#contact {
+    background-color: #3498db; /* Голубой фон */
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
 /* Стили для кнопки Get It Now! */
 button[type="get"] {
     background-color: #00ff00; /* Зеленый фон */
