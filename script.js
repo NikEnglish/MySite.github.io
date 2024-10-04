@@ -62,4 +62,24 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('mouseenter', () => setActiveCard(index));
         card.addEventListener('mouseleave', () => setActiveCard(activeCardIndex));
     });
+
+    // Обработчики кликов для навигации
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    function smoothScroll(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', smoothScroll);
+    });
 });
