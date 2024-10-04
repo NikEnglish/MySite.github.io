@@ -22,16 +22,27 @@ document.addEventListener('DOMContentLoaded', function() {
         requestAnimationFrame(scrollAnimation);
     }
 
-    // Функция для сохранения сообщения в файл
-    function saveMessage(name, email, message) {
-        const messageText = `${new Date().toLocaleString()} - Name: ${name}\nEmail: ${email}\nMessage: ${message}\n\n`;
-        const file = document.createElement('a');
-        file.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(messageText));
-        file.setAttribute('download', 'messages.txt');
-        file.click();
+    // Функция для отправки сообщения на сервер
+    function sendMessage(name, email, message) {
+        $.ajax({
+            url: '/send-message',
+            method: 'POST',
+            data: {
+                name: name,
+                email: email,
+                message: message
+            },
+            success: function(response) {
+                alert('Спасибо! Ваше сообщение было отправлено.');
+            },
+            error: function(xhr, status, error) {
+                console.error('Ошибка при отправке сообщения:', error);
+                alert('Произошла ошибка при отправке сообщения. Попробуйте еще раз.');
+            }
+        });
     }
 
-    // Функция для карусели карт
+    // Инициализация карусели карт
     function cardCarousel() {
         const cards = document.querySelectorAll('.card');
         const prevBtn = document.querySelector('#prevArrow');
@@ -78,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Обработка формы отправки сообщения
+    // Обработка формы отправки сообщений
     const contactForm = document.getElementById('contactForm');
     
     contactForm.addEventListener('submit', function(e) {
@@ -89,10 +100,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const email = contactForm.querySelector('input[name="email"]').value;
         const message = contactForm.querySelector('textarea[name="message"]').value;
 
-        // Сохраняем сообщение в файл
-        saveMessage(name, email, message);
+        // Отправляем сообщение на сервер
+        sendMessage(name, email, message);
 
-        alert('Спасибо! Ваше сообщение было сохранено.');
         contactForm.reset();
     });
 });
