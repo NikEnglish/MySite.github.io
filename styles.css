@@ -26,11 +26,13 @@ nav ul {
 
 nav ul li {
     margin-right: 20px;
+      background-color: #3498db;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
+      background-color: #3498db;
 }
 
 main {
